@@ -12,8 +12,8 @@ present. It can be used to declare a local shared directory for eggs, such as:
     [buildout]
     eggs-directory = /home/<yourlogin>/.eggs-cache
 
-Bootstrapping OpenERP
----------------------
+Bootstrapping OpenERP / Odoo
+----------------------------
 
 You need to checkout the base buildout config at the root of curent user home
 
