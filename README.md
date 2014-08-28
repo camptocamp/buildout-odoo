@@ -1,36 +1,38 @@
-buildout-odoo
-=============
+# buildout-odoo
 
-Base of buildout recipe for odoo servers.
+Base of buildout recipe for odoo servers and development computers.
 
-To be deployed as ~/.buildout
+## Extends your project's configuration
 
+Your project will have at least one `common.cfg` with the base configuration,
+and one additional file per environment (`dev.cfg`, `prod.cfg`, ...).
 
-You may want to manually create ~/.buildout/local.cfg which will be sourced if
-present. It can be used to declare a local shared directory for eggs, such as:
+The `common.cfg` file must contain this option:
 
-    [buildout]
-    eggs-directory = /home/<yourlogin>/.eggs-cache
+```
+[buildout]
+extends = https://raw.githubusercontent.com/camptocamp/buildout-odoo/master/default.cfg?token=8393502__eyJzY29wZSI6IlJhd0Jsb2I6Y2FtcHRvY2FtcC9idWlsZG91dC1vZG9vL21hc3Rlci9kZWZhdWx0LmNmZyIsImV4cGlyZXMiOjE0MDk4Mjg4NTd9--5fd20d8b5834d84491bf069ab081a9e5b127f114
+```
 
-Bootstrapping OpenERP / Odoo
-----------------------------
+## Bootstrapping OpenERP / Odoo
 
-You need to checkout the base buildout config at the root of curent user home
+Clone the project's branch:
 
-  ```bash
-  cd ~/
-  git clone git@github.com:camptocamp/buildout-odoo.git .buildout
-  ```
+```bash
+git clone git@github.com:camptocamp/your_project.git -b the_required_branch
+```
 
-Then move to your instance location and clone project branch
-  ```bash
-  git clone git@github.com:camptocamp/your_project.git -b the_required_branch
-  ```
+Create a `buildout.cfg` symlink to the environment file you want to use:
 
-Then boostrap the instance
-  ```bash
-   ./bootstrap.sh
-   bin/buildout
-  ```
+```bash
+ln -s dev.cfg buildout.cfg
+```
+
+Bootstrap:
+
+```bash
+./bootstrap.sh
+bin/buildout
+```
 
 For more details please refer to : http://doc.business.internal/technical/
